@@ -36,3 +36,12 @@ Bascia, muy basica app en donde se muestra como crear un nuevo projecto y alguna
 ### Tips
 
 - Server Acions y Server Components son de App Router
+
+## Repaso React
+
+Este es un crash course de 7 horas en el cual se muestran las bases de react en los siguientes temas:
+
+**Nota**: Se hace contraste con el curso de grider, si hay algun conocimiento que no esta, se va a referenciar en el docusaurio principal y si se requiere mayor detalle se hara en este projecto y por supuesto se va a referenciar a el DOCUSAURO pincipal.
+
+- Como la libreria toma el root del HTML publico y renderiza la app
+- Explica un componente basico

@@ -1,0 +1,6 @@
+{
+    "eslint.workingDirectories": [
+        "./firstapp",
+        "./project_2"
+    ]
+}
