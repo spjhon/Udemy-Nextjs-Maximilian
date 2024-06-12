@@ -45,3 +45,7 @@ Este es un crash course de 7 horas en el cual se muestran las bases de react en 
 
 - Como la libreria toma el root del HTML publico y renderiza la app
 - Explica un componente basico
+- Sistema basico de props
+- Styling (module css)
+- Component chain
+- State
