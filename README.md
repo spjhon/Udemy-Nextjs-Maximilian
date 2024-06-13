@@ -49,3 +49,5 @@ Este es un crash course de 7 horas en el cual se muestran las bases de react en 
 - Styling (module css)
 - Component chain
 - State
+- Lifting the state up
+- The children prop
