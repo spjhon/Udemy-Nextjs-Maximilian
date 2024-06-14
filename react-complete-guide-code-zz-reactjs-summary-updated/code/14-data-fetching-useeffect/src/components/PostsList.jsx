@@ -18,6 +18,13 @@ function PostsList({ isPosting, onStopPosting }) {
     fetchPosts();
   }, []);
 
+  /*entonces como en la funcion de post se hace la peticion, que creo yo es una promesa pero el codigo 
+  continua ejecutandose asincronamente y no hay interferencia de la promesa ya que los datos ya estan 
+  localmente y se pueden manipular o enviar, pero en el fetch inicial el state debe de esperar de alguna 
+  forma a tener los datos listos entonces se usa el useEffect para hacer que el componente se re-renderice 
+  una vez lleguen los datos asyncronos?, estoy en lo correcto?*/
+
+
   function addPostHandler(postData) {
     fetch('http://localhost:8080/posts', {
       method: 'POST',
