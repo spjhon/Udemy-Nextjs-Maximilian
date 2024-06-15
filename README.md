@@ -56,4 +56,5 @@ Este es un crash course de 7 horas en el cual se muestran las bases de react en 
 - How to update state based on a previous state
 - Rendeling a list (maping) of jsx elements
 - En el video 35 se utiliza un diminuto backend en node independinete que tiene unas custom APIs para hacer post y request desde el front
-- Se explica el useEffect
+- Se explica el useEffect y los side effects
+- Loading state
