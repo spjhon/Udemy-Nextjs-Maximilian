@@ -58,3 +58,4 @@ Este es un crash course de 7 horas en el cual se muestran las bases de react en 
 - En el video 35 se utiliza un diminuto backend en node independinete que tiene unas custom APIs para hacer post y request desde el front
 - Se explica el useEffect y los side effects
 - Loading state
+- Routing
