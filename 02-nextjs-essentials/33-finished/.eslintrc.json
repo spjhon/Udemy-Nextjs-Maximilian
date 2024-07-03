@@ -1,0 +1,17 @@
+{
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "@next/next/no-img-element": "off"
+  }
+}
+
+/*
+"rules": { "@next/next/no-img-element": "off" }: Esta regla específica desactiva la advertencia que 
+normalmente se emitiría cuando se usa el elemento <img> en lugar del componente Image proporcionado por 
+Next.js.
+
+Next.js recomienda usar su componente Image en lugar del elemento HTML <img> porque el componente Image 
+tiene optimizaciones integradas, como la carga diferida (lazy loading), el soporte para imágenes responsivas 
+y la gestión de formatos de imagen modernos (como WebP). Al desactivar esta regla, se permite el uso del 
+elemento <img> sin que ESLint emita una advertencia o error.
+*/

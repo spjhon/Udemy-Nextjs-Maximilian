@@ -1,6 +1,6 @@
 {
     "eslint.workingDirectories": [
-        "./firstapp",
+        "./01-firstapp",
         "./project_2"
     ]
 }
