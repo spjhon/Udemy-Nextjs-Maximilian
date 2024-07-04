@@ -24,7 +24,7 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 Es una app que demuestra las partes esenciales de next js teniendo como principio el Routing, se recomienda ver la imagen 001 de los slides para entender lo que se busca con las rutas
 
-![http://localhost:3000](../../slides/001-routing.jpg)
+![Routing](../../slides/001-routing.jpg)
 
 ## Temas tratados
 
@@ -33,3 +33,10 @@ Es una app que demuestra las partes esenciales de next js teniendo como principi
 ## Tips
 
 - El routing solo funciona dentro de la carpeta app
+- Layout y Page son palabras reservadas de next js para el enrutamiento
+
+![ReservedWords](../../slides/002-reservedRoutingWords.jpg)
+
+- Se toca el tema de server components y segun dice maximilliam, page.tsx es parte del server, esto se confirma ya que si se utiliza el console.log, no se va a ver en la consola del browser sino en el servidor de desarrollo.
+- Cada folder dentro de APP es una ruta despues del slash "/" en la ruta del navegador, pero no por si solo, se debe agregar una page.tsx para que next js reconozca la nueva ruta.
+- Se explica que para los links de enrutamiento interno y que la pagina permanezca siendo una SPA, se utiliza el componente LINK del propio react.
