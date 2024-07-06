@@ -1,6 +1,9 @@
+//Link se utiliza en lugar del anchor para que se mantenga la forma SPA de la pagina.
 import Link from 'next/link';
 
+// El @ es algo especial de Next js que traduce en que el @ es el root
 import ImageSlideshow from '@/components/images/image-slideshow';
+//Esto es el module css
 import classes from './page.module.css';
 
 export default function Home() {
