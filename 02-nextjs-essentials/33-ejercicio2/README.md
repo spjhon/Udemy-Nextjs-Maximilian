@@ -29,6 +29,8 @@ Es una app que demuestra las partes esenciales de next js teniendo como principi
 ## Temas tratados
 
 - Routing
+- Reserved Name Files
+- Basic setup with HTML tag and HEAD metadata
 
 ## Tips
 
@@ -50,4 +52,10 @@ Es una app que demuestra las partes esenciales de next js teniendo como principi
 
 - Maximilliam lo que hace es tener los componentes por fuera de app para tener solo routing en app
 - Se puede utilizar la @ en los path para que Next js los reconozca como root.
-- Dinamic Routes: SI por ejemplo se desea un blog, pero para no tener que hacer un archivo por cada uno de los blogs que se vayan generando, lo que se hace es utilizar los [] en el nombre de la carpeta para indicar a next js que se va a utilizar la misma pagina pero con links a diferentes componentes que den diferente informacion, para esto existe un **props** que next js pasa que se llama **params**, entonces en el componente del post del blog lo que se hace es decir que se utiliza los params.[aqui va lo que esta dentro de esto en el nombre del folder].
+- Dinamic Routes: SI por ejemplo se desea un blog, pero para no tener que hacer un archivo por cada uno de los blogs que se vayan generando, lo que se hace es utilizar los [] en el nombre de la carpeta para indicar a next js que se va a utilizar la misma pagina pero con links a diferentes componentes que den diferente informacion, para esto existe un **props** que next js pasa que se llama **params**, entonces en el componente del post del blog lo que se hace es decir que se utiliza los params.[aqui va lo que esta dentro de esto en el nombre del folder]. Entonces como cada carpeta es una ruta lo que se hace con los [] es decirle a next js que esa es una ruta que va a tener muchas sub-rutas, pero estas sub-rutas por dentro no va a ser mas carpetas, un arrume de carpetas, sino componentes funcionales que es mas facil tener por montones.
+
+  - Lo que se hace es que en el page.tsx que esta al lado de la carpeta [], se colocan los links a los diferentes paths de cada post.
+  - Entonces la idea es tener un referente para futuras paginas que no se sabe que nombre o cuantas van a ser.
+  - Entonces cada componente dentro de la carpeta [] va a recibir el params que hace que ese mismo componente cambie de acuerdo a lo que el page.tsx padre le diga para asi renderizar diferentes paginas con el mismo mini template.
+  - Params.slug es el nombre de la ruta que esta definida dinamicamente en ese momento.
+  
