@@ -1,3 +1,5 @@
+# Ejercicio 03
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -25,4 +27,5 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 - Comenzamos con rutas dinamicas y rutas sencillas
 - Seguimos con el layout, el layout es donde se encuentra el HTML principal
 - Se utilizan CSS modules
-- Se utiliza y se recomienda utilizar el tag Image de next js para imagenes y optimizacion que esta en los docs
+- Se utiliza y se recomienda utilizar el tag Image de next js para imagenes y optimizacion que esta en los docs. A parte del componente Link de next js tambien se tiene el Image componente que lo que hace es tener mas metadata de las imagnes para poder agregar atributos como lazy loading, cargado de diferentes resoluciones dependiendo del viewport entre otros.
+- Si se desea desactivar el lazy loading se agrega el atributo priority

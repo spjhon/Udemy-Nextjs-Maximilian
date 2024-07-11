@@ -57,3 +57,5 @@ Despues de acentar las bases de react y entender sus sistema de renderizado de h
 - Styling, Images & Metadata
 
 Se comienza con la explicacion del routing ya que next js es opitionated en muchos muchos aspectos, para mas entendimiento ir al README del ejercicio del projecto 02 de este repositorio.
+
+En el ejercicio 3 ya se crea una pagina como talen donde se aplican ambos tipos de rutas, estaticas y dinamicas
