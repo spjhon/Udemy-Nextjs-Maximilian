@@ -24,8 +24,28 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 ## Ejercicio 03 Curso Next js Maximilliam
 
+## Como funciona la app
+
+Es la app de una pizzeria con un pequeno blog.
+
+## Temas tratados
+
+- Creacion de una pagina utilizando las herramientas y enrutamiento del ejercicio anterior.
+- Image tag (que permite lazy loading y un monton de optimizaciones mas)
+- useClient
+
+## Flujo de armado
+
+- Se crean el enrutamiento dentro de app, los componentes mejor ponerlos en otra carpeta, se van adicionando estilos acorde a como se van creando componentes y el layout
+- Se popula parte de la pagina
+- Se adiciona el slide dentro de un div en la page principal
+
+## Tips
+
 - Comenzamos con rutas dinamicas y rutas sencillas
 - Seguimos con el layout, el layout es donde se encuentra el HTML principal
 - Se utilizan CSS modules
 - Se utiliza y se recomienda utilizar el tag Image de next js para imagenes y optimizacion que esta en los docs. A parte del componente Link de next js tambien se tiene el Image componente que lo que hace es tener mas metadata de las imagnes para poder agregar atributos como lazy loading, cargado de diferentes resoluciones dependiendo del viewport entre otros.
 - Si se desea desactivar el lazy loading se agrega el atributo priority
+- Se popula la pagina desde la page.tsx principal y se utilizan los links y se adicionan temas con css module
+- **OJO**, recordar que todos los componentes en nextjs por defecto son trabajados en el servidor, si se requiere algo del lado del cliente se debe de especificar el useClient.
