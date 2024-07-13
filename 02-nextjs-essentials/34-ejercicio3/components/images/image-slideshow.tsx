@@ -30,6 +30,7 @@ export default function ImageSlideshow() {
       setCurrentImageIndex((prevIndex) =>
         prevIndex < images.length - 1 ? prevIndex + 1 : 0
       );
+      
     }, 5000);
 
     return () => clearInterval(interval);
@@ -37,6 +38,7 @@ export default function ImageSlideshow() {
 
   return (
     <div className={classes.slideshow}>
+      
       {images.map((image, index) => (
         <Image
           key={index}
