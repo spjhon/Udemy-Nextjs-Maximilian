@@ -34,12 +34,6 @@ Es la app de una pizzeria con un pequeno blog.
 - Image tag (que permite lazy loading y un monton de optimizaciones mas)
 - useClient
 
-## Flujo de armado
-
-- Se crean el enrutamiento dentro de app, los componentes mejor ponerlos en otra carpeta, se van adicionando estilos acorde a como se van creando componentes y el layout
-- Se popula parte de la pagina
-- Se adiciona el slide dentro de un div en la page principal
-
 ## Tips
 
 - Comenzamos con rutas dinamicas y rutas sencillas
@@ -51,3 +45,4 @@ Es la app de una pizzeria con un pequeno blog.
 - **OJO**, recordar que todos los componentes en nextjs por defecto son trabajados en el servidor, si se requiere algo del lado del cliente se debe de especificar el useClient.
 
 - **Cuando utilizar server o client**, si el componente requiere manipulacion del DOM es del client, si requiere poner intervalos, es del cliente, si se desea correr scripts de animacion, en el cliente. Ahora, que va en el server, request, o llamadas post, operaciones de autenticacion.
+- el slug es un prop que entra a cualquier componente para definir cual es el componente que se va a renderizar de forma dinamica.

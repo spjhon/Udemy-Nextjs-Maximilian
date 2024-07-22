@@ -9,7 +9,16 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import classes from './nav-link.module.css';
 
-export default function NavLink({ href, children }) {
+interface NavLinkProps {
+  href: string;
+  children: React.ReactNode;
+}
+
+//Este componente es que se esta creando unos link que son especiales y solo son para el nav y tiene
+//su forma especial de agregar las clases de acuerdo si al momento de renderizar cada componente cuando se solicite
+//desde el padre tenga un href y coincida con el que esta en la barra de direcciones.
+
+export default function NavLink({ href, children }: NavLinkProps) {
   const path = usePathname();
 
   return (
