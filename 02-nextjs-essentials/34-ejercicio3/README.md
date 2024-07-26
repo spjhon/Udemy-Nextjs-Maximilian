@@ -33,6 +33,7 @@ Es la app de una pizzeria con un pequeno blog.
 - Creacion de una pagina utilizando las herramientas y enrutamiento del ejercicio anterior.
 - Image tag (que permite lazy loading y un monton de optimizaciones mas)
 - useClient
+- fetching data
 
 ## Tips
 
@@ -46,3 +47,5 @@ Es la app de una pizzeria con un pequeno blog.
 
 - **Cuando utilizar server o client**, si el componente requiere manipulacion del DOM es del client, si requiere poner intervalos, es del cliente, si se desea correr scripts de animacion, en el cliente. Ahora, que va en el server, request, o llamadas post, operaciones de autenticacion.
 - el slug es un prop que entra a cualquier componente para definir cual es el componente que se va a renderizar de forma dinamica.
+
+- **Fetching Data**: Es importante observar que como el componente es un server component no se necesita un useEffect, 
