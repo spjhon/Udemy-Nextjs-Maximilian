@@ -34,6 +34,7 @@ Es la app de una pizzeria con un pequeno blog.
 - Image tag (que permite lazy loading y un monton de optimizaciones mas)
 - useClient
 - fetching data
+- Suspense
 
 ## Tips
 
@@ -48,4 +49,19 @@ Es la app de una pizzeria con un pequeno blog.
 - **Cuando utilizar server o client**, si el componente requiere manipulacion del DOM es del client, si requiere poner intervalos, es del cliente, si se desea correr scripts de animacion, en el cliente. Ahora, que va en el server, request, o llamadas post, operaciones de autenticacion.
 - el slug es un prop que entra a cualquier componente para definir cual es el componente que se va a renderizar de forma dinamica.
 
-- **Fetching Data**: Es importante observar que como el componente es un server component no se necesita un useEffect, 
+- **Fetching Data**: Es importante observar que como el componente es un server component no se necesita un useEffect:
+
+En Next.js, los Server Components y los Client Components tienen ciclos de vida diferentes, especialmente en cómo manejan el fetching de datos.
+
+Fetching de Datos Antes del Renderizado: Los Server Components pueden hacer fetching de datos antes de que el componente se renderice. Esto es posible porque el componente se ejecuta en el servidor y puede esperar a que los datos estén disponibles antes de enviar el HTML al cliente.
+
+Sin Hooks de Ciclo de Vida del Cliente: Los Server Components no tienen hooks de ciclo de vida del cliente, como useEffect, porque no se ejecutan en el cliente. Todo el fetching y la lógica de datos ocurren en el servidor.
+
+Entonces solo se ejecuta una funcion asyncrona con codigo de una libreria pre ajustada y listo, se mandan los datos.
+
+- Next js hace un heavy cache con las paginas una vez cargadas en el cliente
+- En cuanto a los loading states, se debe de crear un archivo especial llamado loading que acuta sobre toda la pagina mientras que algun componente de esa pagina este en una promesa y que sea un server component, ahora una forma mas granular de controlar estos estados de carga (loading states), es utilizar suspense.
+
+- En cuanto el manejo de errores se puede crear un archivo llamado error que se va a expresar cuando por ejemplo un fetch falla, se pude colocar de forma global o anidado
+
+- En cuanto al manejo de not-found se maneja de la misma manera, se crea un archivo ya sea global o anidado y se puede despelgar un codigo custom.
