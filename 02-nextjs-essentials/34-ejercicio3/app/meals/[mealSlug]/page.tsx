@@ -1,14 +1,40 @@
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
-import { getMeal } from '@/lib/meals';
+import { getMeal, Meal } from '@/lib/meals';
 import classes from './page.module.css';
+                                                                                                           
 
-export default function MealDetailsPage({ params }) {
-  const meal = getMeal(params.mealSlug);
+
+/*En Next.js, params es un objeto que contiene los parámetros dinámicos de una ruta. 
+Estos parámetros son extraídos de la URL y son muy útiles para crear rutas dinámicas. 
+
+Correcto, si el archivo que define el componente de página no está dentro de una carpeta con corchetes 
+(indicando una ruta dinámica), el params no se recibirá automáticamente.
+
+Para que params funcione y contenga los parámetros dinámicos de la URL, debes definir 
+el archivo dentro de una carpeta que use corchetes para indicar una parte dinámica de la ruta.
+
+*/
+
+// Definición de tipos para los parámetros de la ruta
+interface Params {
+  params: {
+    mealSlug: string;
+  };
+}
+
+export default function MealDetailsPage({ params }: Params) {
+
+  /*Sí, params.mealSlug se refiere al valor capturado por la parte dinámica de la ruta. La convención de usar corchetes [] 
+  en los nombres de las carpetas o archivos dentro de pages en Next.js permite capturar diferentes valores de la URL y pasarlos 
+  como parámetros a tu componente.*/
+  
+  const meal: Meal | undefined = getMeal(params.mealSlug);
 
   if (!meal) {
     notFound();
+    return null; // Return null after calling notFound() to avoid rendering the rest of the component
   }
 
   meal.instructions = meal.instructions.replace(/\n/g, '<br />');

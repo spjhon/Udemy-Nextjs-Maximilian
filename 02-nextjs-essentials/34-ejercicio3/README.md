@@ -65,3 +65,6 @@ Entonces solo se ejecuta una funcion asyncrona con codigo de una libreria pre aj
 - En cuanto el manejo de errores se puede crear un archivo llamado error que se va a expresar cuando por ejemplo un fetch falla, se pude colocar de forma global o anidado
 
 - En cuanto al manejo de not-found se maneja de la misma manera, se crea un archivo ya sea global o anidado y se puede despelgar un codigo custom.
+
+- **Suspense**
+- **Error Page**
