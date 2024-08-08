@@ -24,7 +24,12 @@ export interface Meal {
 //ojo con el delay
 
 /*
-Dado que las operaciones son sincrónicas, no necesitas utilizar await. Aquí tienes la función getMeals sin el uso de await:*/
+Dado que las operaciones son sincrónicas, no necesitas utilizar await. Aquí tienes la función getMeals sin el uso de await:
+
+OJO, esta sincroncronicidad se debe a la libreria para consultar la base de datos, pero se puede utilizar una libreria mas poderoas
+y hacer la operacion asyncrona y utilizar suspense en el componente en cuestion
+
+*/
 
 export async function getMeals() {
   await new Promise((resolve) => setTimeout(resolve, 2000));

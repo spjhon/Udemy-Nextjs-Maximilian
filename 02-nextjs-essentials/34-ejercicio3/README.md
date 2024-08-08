@@ -68,3 +68,9 @@ Entonces solo se ejecuta una funcion asyncrona con codigo de una libreria pre aj
 
 - **Suspense**
 - **Error Page**
+
+El error se puede colocar en la parte mas externa y va a coger cualquier error que este anidado
+
+- **Not Found**
+
+Al igual que con error se puede colocar en cualquier lado, se puede perzonalizar.
