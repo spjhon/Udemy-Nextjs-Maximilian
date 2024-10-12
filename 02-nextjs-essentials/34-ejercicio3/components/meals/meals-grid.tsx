@@ -13,6 +13,9 @@ export default function MealsGrid({ meals }: MealsGridProps) {
 
       {meals.map((meal) => (
         <li key={meal.id}>
+          {/*Cuando usas el spread operator (...), lo que haces es descomponer un objeto y pasar cada una de sus 
+          propiedades como props individuales. Esto tiene sentido cuando estás tratando con un objeto que contiene 
+          múltiples propiedades que deseas pasar al componente de manera individual.*/}
           <MealItem {...meal} />
         </li>
       ))}

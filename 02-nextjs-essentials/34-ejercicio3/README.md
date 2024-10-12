@@ -67,9 +67,12 @@ Entonces solo se ejecuta una funcion asyncrona con codigo de una libreria pre aj
 - En cuanto al manejo de not-found se maneja de la misma manera, se crea un archivo ya sea global o anidado y se puede despelgar un codigo custom.
 
 - **Suspense**
+
+Resulta que si utilizamos el file loading.js, next js reemplaza todo el componente que esta haciendo fetching (despues de detectar automaticamente el fetching) y carga el componente que se encuentre en loading.js, pero gracias a suspense, se puede crear un espacio de fetching unico a una partecita del componente y añadir el fallback
+
 - **Error Page**
 
-El error se puede colocar en la parte mas externa y va a coger cualquier error que este anidado
+El error se puede colocar en la parte mas externa y va a coger cualquier error que este anidado, algo curioso a tener en cuenta es que next js entrega unos props especiales al componente error para poder identificar mesajes de error en production mas facil
 
 - **Not Found**
 

@@ -34,7 +34,7 @@ y hacer la operacion asyncrona y utilizar suspense en el componente en cuestion
 export async function getMeals() {
   await new Promise((resolve) => setTimeout(resolve, 2000));
 
-// throw new Error('Loading meals failed');
+//throw new Error('Loading meals failed');
 
   return db.prepare('SELECT * FROM meals').all() as Meal[];
 }
