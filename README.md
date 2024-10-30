@@ -57,6 +57,7 @@ Esta en "34-ejercicio3"
 - Routing, Pages & Components
 - Fetching and Sending Data
 - Styling, Images & Metadata
+- Suspence, async, server vs client components
 
 Se comienza con la explicacion del routing ya que next js es opitionated en muchos muchos aspectos, para mas entendimiento ir al README del ejercicio del projecto 02 de este repositorio.
 

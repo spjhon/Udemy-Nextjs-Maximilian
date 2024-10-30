@@ -70,6 +70,8 @@ Entonces solo se ejecuta una funcion asyncrona con codigo de una libreria pre aj
 
 Resulta que si utilizamos el file loading.js, next js reemplaza todo el componente que esta haciendo fetching (despues de detectar automaticamente el fetching) y carga el componente que se encuentre en loading.js, pero gracias a suspense, se puede crear un espacio de fetching unico a una partecita del componente y añadir el fallback
 
+entonces segun entiendo de next js, en un server component puedo utilizar async y no hay problema ya que las operaciones se harian antes del renderizado entonces se puede esperar a obtener los datos antes del renderizado pero en un client si se necesita tener algo como useEffect para poder hacer fetching una vez renderizado el componente?
+
 - **Error Page**
 
 El error se puede colocar en la parte mas externa y va a coger cualquier error que este anidado, algo curioso a tener en cuenta es que next js entrega unos props especiales al componente error para poder identificar mesajes de error en production mas facil

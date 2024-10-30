@@ -39,6 +39,10 @@ export async function getMeals() {
   return db.prepare('SELECT * FROM meals').all() as Meal[];
 }
 
+
+
+
+
 export function getMeal(slug: string): Meal | undefined {
   return db.prepare('SELECT * FROM meals WHERE slug = ?').get(slug) as Meal | undefined;
 }
