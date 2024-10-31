@@ -10,6 +10,7 @@ interface Meal {
   image: File | null;
   creator: string | null;
   creator_email: string | null;
+  slug: string | null;
 }
 
 /** 
