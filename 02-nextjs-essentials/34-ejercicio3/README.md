@@ -35,6 +35,10 @@ Es la app de una pizzeria con un pequeno blog.
 - useClient
 - fetching data
 - Suspense
+- Manejo de archivos
+- useRef
+- Not-found
+- error
 
 ## Tips
 
@@ -79,3 +83,7 @@ El error se puede colocar en la parte mas externa y va a coger cualquier error q
 - **Not Found**
 
 Al igual que con error se puede colocar en cualquier lado, se puede perzonalizar.
+
+- **Server Action**
+
+Una funcion que se garantiza que se va a ejecutar en el servidor y la funcion debe de ser async

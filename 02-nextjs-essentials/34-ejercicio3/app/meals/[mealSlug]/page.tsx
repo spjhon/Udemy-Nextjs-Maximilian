@@ -32,6 +32,7 @@ export default function MealDetailsPage({ params }: Params) {
   
   const meal: Meal | undefined = getMeal(params.mealSlug);
 
+  /** El !meal se utiliza para inyectar un not-found focalizado y no de forma general */
   if (!meal) {
     notFound();
     return null; // Return null after calling notFound() to avoid rendering the rest of the component
@@ -54,8 +55,10 @@ export default function MealDetailsPage({ params }: Params) {
         </div>
       </header>
       <main>
+        {/*El dangerouslySetInnerHTML es para poder inyectar HTML en el render pero es peligroso para ataques crossscript */}
         <p
           className={classes.instructions}
+          
           dangerouslySetInnerHTML={{
             __html: meal.instructions,
           }}

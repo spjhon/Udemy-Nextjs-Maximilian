@@ -58,6 +58,8 @@ Esta en "34-ejercicio3"
 - Fetching and Sending Data
 - Styling, Images & Metadata
 - Suspence, async, server vs client components
+- useRef, formInput, ImageInput, manejo de archivos, preview de imagenes cargadas
+- SERVER ACTIONS: una funcion que se garantiza que se va a ejecutar en el servidor y la funcion debe de ser async
 
 Se comienza con la explicacion del routing ya que next js es opitionated en muchos muchos aspectos, para mas entendimiento ir al README del ejercicio del projecto 02 de este repositorio.
 
