@@ -6,19 +6,10 @@ import fs from 'node:fs';
 
 const db = sql('meals.db');
 
-/*
-
-has centralizado la definición de la interfaz Meal en el archivo donde se realiza el fetch de la base de datos y 
-has asegurado que todos los componentes utilizan el tipo correcto. Esto debería resolver el error de tipos y mejorar 
-la mantenibilidad de tu código.
-
-*/
-
 export interface Meal {
-  id: string;
   title: string;
   slug: string;
-  image: string;
+  image: string; //aqui las interfaces son diferentes en el fetch y en el save dado que la imagen se lee como un string que es una ruta, mientras que la imagen que entra es un jodido archivo que hay que procesar y convertir en una ruta
   summary: string;
   creator: string;
   creator_email: string;
@@ -63,14 +54,12 @@ export function getMeal(slug: string): Meal | undefined {
 interface SaveMealInput {
   title: string;
   instructions: string;
-  image: { name: string; arrayBuffer: () => Promise<ArrayBuffer> };
+  image: File;
   summary: string;
   creator: string;
   creator_email: string;
   slug: string;
 }
-
-
 
 /**El asnc se necesita mas que todo para el await del buffered para poder crear el archivo de imagen */
 export async function saveMeal(meal: SaveMealInput): Promise<void> {
@@ -98,8 +87,11 @@ export async function saveMeal(meal: SaveMealInput): Promise<void> {
     }
   });
 
-  meal.image = `/images/${fileName}`;
+    // Asigna la ruta de la imagen a una nueva propiedad
+    //aqui hay un error que toca arreglar despues, resulta que si se deja el mismo nombre de title hay conflicto en el slug
+    const imageData = `/images/${fileName}`;
 
+  // Inserta los datos en la base de datos, utilizando `imageData` en lugar de `meal.image`
   db.prepare(`
     INSERT INTO meals
       (title, summary, instructions, creator, creator_email, image, slug)
@@ -112,5 +104,8 @@ export async function saveMeal(meal: SaveMealInput): Promise<void> {
       @image,
       @slug
     )
-  `).run(meal);
+  `).run({
+    ...meal,
+    image: imageData, // Usa `imageData` aquí
+  });
 }

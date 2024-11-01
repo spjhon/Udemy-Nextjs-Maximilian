@@ -87,3 +87,7 @@ Al igual que con error se puede colocar en cualquier lado, se puede perzonalizar
 - **Server Action**
 
 Una funcion que se garantiza que se va a ejecutar en el servidor y la funcion debe de ser async
+
+- **useFormState - useActionState**: Es una feature de react que permite tomar "el control" de un action (mas que todo utilizado para fomularios) y asi poder devolver mensajes que son validados en el actions antes de ser enviados a la base de datos
+
+Al final del ejercicio se explica como usar el S3 bucket de aws pero lo voy a dejar para que funcione localmente.
