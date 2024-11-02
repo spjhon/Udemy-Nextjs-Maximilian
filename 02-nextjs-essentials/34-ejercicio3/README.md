@@ -26,7 +26,7 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 ## Como funciona la app
 
-Es la app de una pizzeria con un pequeno blog.
+Es la app de una pizzeria en donde se muestra como hacer fetching y hacer post por medio de formularios, ademas de toda la informacion basica que se maneja en next js
 
 ## Temas tratados
 
@@ -91,3 +91,9 @@ Una funcion que se garantiza que se va a ejecutar en el servidor y la funcion de
 - **useFormState - useActionState**: Es una feature de react que permite tomar "el control" de un action (mas que todo utilizado para fomularios) y asi poder devolver mensajes que son validados en el actions antes de ser enviados a la base de datos
 
 Al final del ejercicio se explica como usar el S3 bucket de aws pero lo voy a dejar para que funcione localmente.
+
+- **Revalidating Paths**
+
+- **S3 Storage**
+
+- **Metadata**

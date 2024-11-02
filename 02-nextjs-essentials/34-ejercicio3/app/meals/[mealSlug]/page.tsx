@@ -24,6 +24,22 @@ interface Params {
   };
 }
 
+
+/**Estos son metadatos dinamicos que lo que hacen es accesar a los params para poder tener metada personalizada */
+export async function generateMetadata({ params }: Params) {
+  const meal = getMeal(params.mealSlug);
+
+  if (!meal) {
+    notFound();
+    return null;
+  }
+
+  return {
+    title: meal.title,
+    description: meal.summary,
+  };
+}
+
 export default function MealDetailsPage({ params }: Params) {
 
   /*Sí, params.mealSlug se refiere al valor capturado por la parte dinámica de la ruta. La convención de usar corchetes [] 
@@ -37,6 +53,9 @@ export default function MealDetailsPage({ params }: Params) {
     notFound();
     return null; // Return null after calling notFound() to avoid rendering the rest of the component
   }
+
+
+
 
   meal.instructions = meal.instructions.replace(/\n/g, '<br />');
 

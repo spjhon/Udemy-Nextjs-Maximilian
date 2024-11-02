@@ -50,7 +50,7 @@ Este es un crash course de 7 horas en el cual se muestran las bases de react en 
 
 Despues de acentar las bases de react y entender sus sistema de renderizado de html, Next js viene para hacer el resto de trabajo tras bambalinas que apoya los elementos creados e inyectados al DOM por medio de REACT
 
-### 1.2.1. Temas Tratados
+#### 1.2.1. Temas Tratados
 
 Esta en "34-ejercicio3"
 
@@ -60,7 +60,16 @@ Esta en "34-ejercicio3"
 - Suspence, async, server vs client components
 - useRef, formInput, ImageInput, manejo de archivos, preview de imagenes cargadas
 - SERVER ACTIONS: una funcion que se garantiza que se va a ejecutar en el servidor y la funcion debe de ser async
+- Metadata (static, dynamic)
 
 Se comienza con la explicacion del routing ya que next js es opitionated en muchos muchos aspectos, para mas entendimiento ir al README del ejercicio del projecto 02 de este repositorio.
 
 En el ejercicio 3 ya se crea una pagina como tal en donde se aplican ambos tipos de rutas, estaticas y dinamicas
+
+### 1.3 Routing Deep Dive
+
+Es un demo sencillo de un sitio de news para demostrar algo mas sobre el routing de next js
+
+#### 1.3.1. Temas Tratados
+
+- File Routing
