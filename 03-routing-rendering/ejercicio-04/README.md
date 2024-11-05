@@ -38,3 +38,10 @@ Es una demo de una pagina de noticias
 
 - **Standard Routes** Son aquellas rutas que se hacen solo con crear una carpeta en el directorio de la app (/about).
 - **Dynamic Routes** Son aqullas deifinidas por segmentos que son dinamicos y que tienen acceso a params para rutas dinamicas y cambiantes (/app/post/[slug]).
+- **Prallel Routes** Como su nombre lo indica son dos rutas que van a la misma parte, rutas paralelas. En Next.js, las rutas paralelas (o parallel routes) permiten crear varias rutas o vistas que pueden renderizarse de forma simultánea en una misma página. Su propósito es ofrecer mayor flexibilidad en la gestión del enrutado y la renderización de contenido dentro de una misma URL, permitiendo dividir la interfaz en secciones que puedan cambiar de manera independiente.
+
+  1. Renderización simultánea de contenido independiente
+  2. Experiencias de usuario complejas
+  3. Gestión de rutas complejas en aplicaciones avanzadas
+  4. Reducción de la carga inicial
+  5. Control granular del estado y renderizado
