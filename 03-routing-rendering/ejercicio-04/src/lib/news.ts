@@ -28,10 +28,10 @@ export function getAvailableNewsYears(): number[] {
   }, []).sort((a, b) => b - a);
 }
 
-export function getAvailableNewsMonths(year: number): number[] {
+export function getAvailableNewsMonths(year: string): number[] {
   return DUMMY_NEWS.reduce((months: number[], news: NewsItem) => {
     const newsYear = new Date(news.date).getFullYear();
-    if (newsYear === year) {
+    if (newsYear === parseInt(year)) {
       const month = new Date(news.date).getMonth();
       if (!months.includes(month + 1)) {
         months.push(month + 1);
@@ -41,16 +41,16 @@ export function getAvailableNewsMonths(year: number): number[] {
   }, []).sort((a, b) => b - a);
 }
 
-export function getNewsForYear(year: number): NewsItem[] {
+export function getNewsForYear(year: string): NewsItem[] {
   return DUMMY_NEWS.filter(
-    (news: NewsItem) => new Date(news.date).getFullYear() === year
+    (news: NewsItem) => new Date(news.date).getFullYear() === parseInt(year)
   );
 }
 
-export function getNewsForYearAndMonth(year: number, month: number): NewsItem[] {
+export function getNewsForYearAndMonth(year: string, month: string): NewsItem[] {
   return DUMMY_NEWS.filter((news: NewsItem) => {
     const newsYear = new Date(news.date).getFullYear();
     const newsMonth = new Date(news.date).getMonth() + 1;
-    return newsYear === year && newsMonth === month;
+    return newsYear === parseInt(year) && newsMonth === parseInt(month);
   });
 }

@@ -45,3 +45,19 @@ Es una demo de una pagina de noticias
   3. Gestión de rutas complejas en aplicaciones avanzadas
   4. Reducción de la carga inicial
   5. Control granular del estado y renderizado
+- **Catch All Routing** Es una característica que permite capturar rutas dinámicas y manejarlas en una sola página o componente. Esto es útil cuando tienes una estructura de URL donde varias rutas comparten un patrón común, pero tienen partes variables. En lugar de crear un archivo de página para cada ruta posible, Next.js permite manejar todos los casos en una sola ruta dinámica.
+
+Casos de uso comunes:
+
+  1. Páginas de blog: Si tienes una estructura de URL donde cada entrada de blog tiene varias secciones o categorías, puedes capturar todas las rutas y manejar la lógica en una sola página.
+  2. Documentación: En sitios de documentación, donde puede haber varias subsecciones y niveles anidados.
+  3. 404 personalizadas: Puedes utilizar el catch-all para manejar rutas desconocidas y redirigir o mostrar una página 404 personalizada.
+
+La diferencia principal entre un catch-all route y un layout en Next.js está en su propósito y la forma en que se utilizan:
+
+  1. Catch-All Route: Captura múltiples rutas dinámicas y las dirige a un solo componente de página, permitiéndote manejar varias estructuras de URL de forma centralizada.
+  2. Layout: Sirve como una estructura envolvente o contenedor para organizar y reutilizar secciones comunes de la interfaz (como la barra de navegación, el pie de página, etc.) en varias páginas o secciones de tu aplicación.
+
+La diferencia clave con layout es que layout no tiene acceso a params entonces un layout esta "ciego" al tratarse de rutas mas profundas.
+
+Ahora la diferencia con el "[slug]" conocido es que los params solo tienen uno solo, mientras que con "[...slug]" "[[slug]]" es que tienen acceso a un array y con eso lograr crear rutas dinamicas anidadas.

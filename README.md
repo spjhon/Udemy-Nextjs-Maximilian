@@ -73,3 +73,6 @@ Es un demo sencillo de un sitio de news para demostrar algo mas sobre el routing
 #### 1.3.1. Temas Tratados
 
 - File Routing
+- Dinamic Routing
+- Parallel Routing
+- Catch all routing
