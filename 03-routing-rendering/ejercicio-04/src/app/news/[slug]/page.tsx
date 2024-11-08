@@ -1,4 +1,5 @@
-import { DUMMY_NEWS } from '@/dummy-news';
+import { DUMMY_NEWS } from "@/dummy-news";
+import Link from "next/link";
 //import Image from 'next/image';
 
 interface NewsDetailPageProps {
@@ -7,8 +8,9 @@ interface NewsDetailPageProps {
   };
 }
 
-export default function NewsDetailPage({ params }: NewsDetailPageProps) {
-  const newsSlug = params.slug;
+export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
+  const typedParams = await params;
+  const newsSlug = typedParams.slug;
   const newsItem = DUMMY_NEWS.find((newsItem) => newsItem.slug === newsSlug);
 
   // Verificar si newsItem es undefined para evitar errores
@@ -19,7 +21,9 @@ export default function NewsDetailPage({ params }: NewsDetailPageProps) {
   return (
     <article className="news-article">
       <header>
-        <img src={`/images/news/${newsItem.image}`} alt={newsItem.title} />
+        <Link href={`/news/${newsItem.slug}/image`}>
+          <img src={`/images/news/${newsItem.image}`} alt={newsItem.title} />
+        </Link>
         <h1>{newsItem.title}</h1>
         <time dateTime={newsItem.date}>{newsItem.date}</time>
       </header>

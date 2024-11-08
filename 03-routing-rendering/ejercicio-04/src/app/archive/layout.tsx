@@ -5,6 +5,8 @@ interface ArchiveLayoutProps {
   latest: React.ReactNode;   // Podría ser un componente o cualquier contenido React
 }
 
+
+//Este es el layout de un componente que recibe dos rutas paralelas y se renderizan en esta parte como se puede observar
 const ArchiveLayout: React.FC<ArchiveLayoutProps> = ({ archive, latest }) => {
   return (
     <div>

@@ -2,8 +2,16 @@ import { notFound } from 'next/navigation';
 
 import { DUMMY_NEWS } from '@/dummy-news';
 
-export default function ImagePage({ params }) {
-  const newsItemSlug = params.slug;
+
+interface ImagePageProps {
+  params: {
+    slug: string;
+  };
+}
+
+export default async function ImagePage({ params }: ImagePageProps) {
+  const typedParams = await params
+  const newsItemSlug = typedParams.slug;
   const newsItem = DUMMY_NEWS.find((newsItem) => newsItem.slug === newsItemSlug);
 
   if (!newsItem) {

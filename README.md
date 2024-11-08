@@ -76,3 +76,5 @@ Es un demo sencillo de un sitio de news para demostrar algo mas sobre el routing
 - Dinamic Routing
 - Parallel Routing
 - Catch all routing
+- Intercepting Routes
+- Programatic routing

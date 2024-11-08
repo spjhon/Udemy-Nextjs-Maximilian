@@ -123,3 +123,5 @@ ALGO IMPORTANTE: Algo importante de las interceptor routes es que la idea es mos
 ---
 
 - Se pueden anidar rutas estaticas dentro de rutas dinamicas
+
+-**Programatic routing**: 
