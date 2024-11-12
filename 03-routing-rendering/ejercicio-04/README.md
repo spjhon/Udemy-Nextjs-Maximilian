@@ -124,4 +124,78 @@ ALGO IMPORTANTE: Algo importante de las interceptor routes es que la idea es mos
 
 - Se pueden anidar rutas estaticas dentro de rutas dinamicas
 
--**Programatic routing**: 
+-**Programatic routing**: se utiliza el useRouter()
+
+- un detalle, cuando se utiliza params en un server component, se debe de utilizar el async y el await, pero si es "use clien" o cliente componente entonces se debe de utilizar el hook use() de react y todo esto debido a que params es una jodida promesa en next js.
+
+-**Route Grouping**: es una forma de que se muestren diferentes layouts de acuerdo a la ruta que se navegue, sin tener que depender de un layout principal
+
+Sí, **Grouping Layouts** en Next.js te permiten tener layouts distintos para cada grupo de rutas, y esos layouts solo se aplican a las rutas dentro de su respectivo grupo de paréntesis. Esto significa que puedes crear varios layouts en tu aplicación, y cada uno de ellos se activará solo cuando el usuario esté navegando dentro de las rutas de su grupo.
+
+### Cómo funciona el Grouping Layout para diferentes grupos
+
+Cuando usas un directorio de agrupación `(group-name)`, cualquier layout definido dentro de ese grupo solo se aplicará a las rutas en ese directorio, pero no afectará a las rutas fuera del grupo. Esto es útil para tener layouts que solo se activan para un conjunto específico de rutas, sin afectar la estructura de URL o la apariencia de otras secciones de tu aplicación.
+
+### Ejemplo de Grouping Layout en Next.js
+
+Imagina que tienes dos grupos de rutas, `(admin)` y `(user)`, y cada grupo tiene su propio layout:
+
+```mdx
+app/
+├── (admin)/
+│   ├── layout.tsx       // Layout específico para rutas de admin
+│   ├── dashboard/
+│   │   └── page.tsx
+│   └── settings/
+│       └── page.tsx
+├── (user)/
+│   ├── layout.tsx       // Layout específico para rutas de usuario
+│   ├── profile/
+│   │   └── page.tsx
+│   └── settings/
+│       └── page.tsx
+└── layout.tsx           // Layout general para toda la aplicación
+```
+
+### Cómo se aplican los layouts
+
+- **`app/layout.tsx`** es el layout raíz y puede contener elementos comunes para toda la aplicación, como un encabezado o un pie de página general.
+- **`app/(admin)/layout.tsx`** define un layout que solo se aplicará a las rutas dentro del grupo `(admin)`, como `/dashboard` y `/settings`.
+- **`app/(user)/layout.tsx`** define un layout para las rutas dentro del grupo `(user)`, como `/profile` y `/settings`.
+
+### Ejecución de los layouts por grupo
+
+Cuando el usuario navegue a:
+
+- `/dashboard` o `/settings` del grupo `(admin)`, el layout `app/(admin)/layout.tsx` será el que se utilice para mostrar esas rutas, aplicando los estilos y configuraciones definidas allí.
+- `/profile` o `/settings` del grupo `(user)`, el layout `app/(user)/layout.tsx` se encargará de renderizar esas rutas con sus propios estilos y configuraciones.
+
+### Ventajas de este enfoque
+
+- **Separación de layouts**: Puedes tener diferentes apariencias y componentes para cada sección de tu aplicación sin afectar a las demás.
+- **URLs limpias**: El directorio de agrupación `(group-name)` no afecta la URL, por lo que puedes organizar el código sin cambiar la estructura de URL de la aplicación.
+
+Este sistema es particularmente útil en aplicaciones con secciones muy distintas (por ejemplo, áreas de administración vs. área de usuario) donde cada una necesita un layout diferente.
+
+- **Route Handlers**: Los Route Handlers en Next.js son funciones que permiten manejar rutas específicas dentro de la carpeta app para crear APIs o manejar peticiones personalizadas. Estos se encuentran dentro de la estructura de rutas y funcionan como endpoints de servidor para procesar peticiones HTTP (GET, POST, PUT, DELETE, etc.), directamente desde la misma estructura de archivos.
+
+Características clave de los Route Handlers en Next.js:
+Ubicación:
+
+Se definen dentro de la carpeta app en Next.js, en la estructura de la ruta que quieres manejar.
+Por ejemplo, una ruta app/api/user/route.js definirá un endpoint en /api/user.
+Funciones manejadoras de HTTP:
+
+Los Route Handlers exportan funciones asincrónicas para cada tipo de petición HTTP que deseas soportar (por ejemplo, GET, POST, DELETE, etc.).
+Cada función maneja un tipo de petición y puede procesarla de acuerdo con la lógica de tu aplicación.
+
+Respuestas de servidor:
+
+Utilizan el objeto Response de Web APIs para devolver respuestas personalizadas al cliente.
+Puedes devolver JSON, HTML, o cualquier tipo de respuesta que necesites.
+Uso de Middlewares:
+
+Pueden integrarse con middlewares y autenticación, lo cual permite manejar validaciones, permisos o verificar tokens antes de procesar la lógica de la ruta.
+Optimización y SSR:
+
+Los Route Handlers permiten una mayor flexibilidad en el manejo de datos y optimización del lado del servidor, ya que Next.js maneja directamente las solicitudes del cliente.

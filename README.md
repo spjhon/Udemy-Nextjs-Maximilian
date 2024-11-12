@@ -78,3 +78,17 @@ Es un demo sencillo de un sitio de news para demostrar algo mas sobre el routing
 - Catch all routing
 - Intercepting Routes
 - Programatic routing
+- use() y useRouter()
+- Route grouping
+- Route Handlers (solo introduccion)
+- Middleware (solo introduccion)
+
+### 1.4. Fetching Deep Dive
+
+Se continua con el demo de news pero esta vez se hacer fetching desde diferentes fuentes en este deep dive que se aprecia en el ejercicio 05.
+
+- Where and How to fetch data
+- Working with apis
+- Loading data from databases and other sources
+
+#### 1.4.1. Temas tratados
