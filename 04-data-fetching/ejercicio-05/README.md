@@ -33,3 +33,5 @@ Es una demo de una pagina de noticias AHORA CON DATA FETCHING
 - Fetching Deep Dive
 
 ## Tips
+
+### Option 01: Client Side Data Fetching
