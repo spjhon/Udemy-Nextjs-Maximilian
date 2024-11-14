@@ -1,4 +1,4 @@
-import { DUMMY_NEWS } from '@/dummy-news';
+
 
 // Definimos la interfaz NewsItem que refleja la estructura de DUMMY_NEWS
 export interface NewsItem {
@@ -10,26 +10,122 @@ export interface NewsItem {
   content: string;
 }
 
-export function getAllNews(): NewsItem[] {
-  return DUMMY_NEWS;
+
+
+
+export async function getAllNews(): Promise<NewsItem[]> {
+  // Realiza una solicitud fetch para obtener todos los artículos de noticias
+  const response = await fetch('http://localhost:8080/news');
+
+  // Simula un retraso de 2 segundos
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+
+  // Verifica si la respuesta es correcta y convierte a JSON
+  if (!response.ok) {
+    throw new Error('Error fetching news data');
+  }
+  const news = await response.json();
+
+  return news;
 }
 
-export function getLatestNews(): NewsItem[] {
-  return DUMMY_NEWS.slice(0, 3);
+
+
+
+export async function getLatestNews(): Promise<NewsItem[]> {
+
+// Realiza una solicitud fetch para obtener todos los artículos
+const response = await fetch('http://localhost:8080/news');
+
+// Simula un retraso de 2 segundos
+await new Promise((resolve) => setTimeout(resolve, 2000));
+
+// Verifica si la respuesta es correcta y convierte a JSON
+if (!response.ok) {
+  throw new Error('Error fetching news data');
 }
 
-export function getAvailableNewsYears(): number[] {
-  return DUMMY_NEWS.reduce((years: number[], news: NewsItem) => {
+
+const allNews: NewsItem[] = await response.json();
+
+  return allNews.slice(0, 3);
+}
+
+
+
+/*
+export async function getNewsItem(slug: string): Promise<NewsItem | null> {
+  // Realiza una solicitud fetch para obtener todos los artículos
+  const response = await fetch('http://localhost:8080/news');
+
+  // Simula un retraso de 2 segundos
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+
+  // Verifica si la respuesta es correcta y convierte a JSON
+  if (!response.ok) {
+    throw new Error('Error fetching news data');
+  }
+
+
+  const allNews: NewsItem[] = await response.json();
+
+  // Filtra el artículo que coincide con el `slug`
+  const newsItem = allNews.find(item  => item.slug === slug);
+
+  return newsItem || null; // Devuelve null si no se encuentra el artículo
+}
+
+*/
+
+
+
+export async function getAvailableNewsYears(): Promise<number[]> {
+
+  // Realiza una solicitud fetch para obtener todos los artículos
+  const response = await fetch('http://localhost:8080/news');
+
+  // Simula un retraso de 2 segundos
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+
+  // Verifica si la respuesta es correcta y convierte a JSON
+  if (!response.ok) {
+    throw new Error('Error fetching news data');
+  }
+
+
+  const allNews = await response.json();
+  
+  return allNews.reduce((years: number[], news: NewsItem) => {
     const year = new Date(news.date).getFullYear();
     if (!years.includes(year)) {
       years.push(year);
     }
     return years;
-  }, []).sort((a, b) => b - a);
+  }, []).sort((a: number, b: number) => b - a);
 }
 
-export function getAvailableNewsMonths(year: string): number[] {
-  return DUMMY_NEWS.reduce((months: number[], news: NewsItem) => {
+
+
+
+
+
+
+export async function getAvailableNewsMonths(year: string): Promise<number[]> {
+
+// Realiza una solicitud fetch para obtener todos los artículos
+const response = await fetch('http://localhost:8080/news');
+
+// Simula un retraso de 2 segundos
+await new Promise((resolve) => setTimeout(resolve, 2000));
+
+// Verifica si la respuesta es correcta y convierte a JSON
+if (!response.ok) {
+  throw new Error('Error fetching news data');
+}
+
+const allNews: NewsItem[] = await response.json();
+
+  return allNews.reduce((months: number[], news: NewsItem) => {
     const newsYear = new Date(news.date).getFullYear();
     if (newsYear === parseInt(year)) {
       const month = new Date(news.date).getMonth();
@@ -41,14 +137,58 @@ export function getAvailableNewsMonths(year: string): number[] {
   }, []).sort((a, b) => b - a);
 }
 
-export function getNewsForYear(year: string): NewsItem[] {
-  return DUMMY_NEWS.filter(
+
+
+
+
+
+export async function getNewsForYear(year: string): Promise<NewsItem[]> {
+
+// Realiza una solicitud fetch para obtener todos los artículos
+const response = await fetch('http://localhost:8080/news');
+
+// Simula un retraso de 2 segundos
+await new Promise((resolve) => setTimeout(resolve, 2000));
+
+// Verifica si la respuesta es correcta y convierte a JSON
+if (!response.ok) {
+  throw new Error('Error fetching news data');
+}
+
+
+const allNews: NewsItem[] = await response.json();
+
+  return allNews.filter(
     (news: NewsItem) => new Date(news.date).getFullYear() === parseInt(year)
   );
 }
 
-export function getNewsForYearAndMonth(year: string, month: string): NewsItem[] {
-  return DUMMY_NEWS.filter((news: NewsItem) => {
+
+
+
+
+
+
+
+
+export async function getNewsForYearAndMonth(year: string, month: string) {
+
+// Realiza una solicitud fetch para obtener todos los artículos
+const response = await fetch('http://localhost:8080/news');
+
+// Simula un retraso de 2 segundos
+await new Promise((resolve) => setTimeout(resolve, 2000));
+
+// Verifica si la respuesta es correcta y convierte a JSON
+if (!response.ok) {
+  throw new Error('Error fetching news data');
+}
+
+
+const allNews: NewsItem[] = await response.json();
+
+
+  return allNews.filter((news: NewsItem) => {
     const newsYear = new Date(news.date).getFullYear();
     const newsMonth = new Date(news.date).getMonth() + 1;
     return newsYear === parseInt(year) && newsMonth === parseInt(month);

@@ -67,6 +67,9 @@ async function FilteredNews({ year, month }) {
   return newsContent;
 }
 
+
+
+//MAIN PAGE
 export default async function FilteredNewsPage({ params }) {
   const filter = params.filter;
 

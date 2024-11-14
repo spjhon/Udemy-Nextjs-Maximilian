@@ -3,8 +3,8 @@ import { getLatestNews } from '@/lib/news';
 import { NewsItem } from '@/lib/news';
 
 
-export default function LatestNewsPage() {
-  const latestNews: NewsItem[] = getLatestNews();
+export default async function LatestNewsPage() {
+  const latestNews: NewsItem[] = await getLatestNews();
 
   return (
     <>

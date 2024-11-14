@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation';
-
-import { DUMMY_NEWS } from '@/dummy-news';
+import { getAllNews, NewsItem } from '@/lib/news';
 
 
 interface ImagePageProps {
@@ -12,7 +11,8 @@ interface ImagePageProps {
 export default async function ImagePage({ params }: ImagePageProps) {
   const typedParams = await params
   const newsItemSlug = typedParams.slug;
-  const newsItem = DUMMY_NEWS.find((newsItem) => newsItem.slug === newsItemSlug);
+  const news = await getAllNews();
+  const newsItem: NewsItem | undefined = news.find((newsItem) => newsItem.slug === newsItemSlug);
 
   if (!newsItem) {
     notFound();

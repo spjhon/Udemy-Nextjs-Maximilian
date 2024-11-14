@@ -2,11 +2,15 @@ import sql from 'better-sqlite3';
 
 const db = sql('data.db');
 
+
+
 export async function getAllNews() {
   const news = db.prepare('SELECT * FROM news').all();
   await new Promise((resolve) => setTimeout(resolve, 2000));
   return news;
 }
+
+
 
 export async function getNewsItem(slug) {
   const newsItem = db.prepare('SELECT * FROM news WHERE slug = ?').get(slug);
@@ -15,6 +19,8 @@ export async function getNewsItem(slug) {
 
   return newsItem;
 }
+
+
 
 export async function getLatestNews() {
   const latestNews = db

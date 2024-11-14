@@ -1,4 +1,5 @@
-import { DUMMY_NEWS } from "@/dummy-news";
+
+import { getAllNews, NewsItem } from "@/lib/news";
 import Link from "next/link";
 //import Image from 'next/image';
 
@@ -11,7 +12,8 @@ interface NewsDetailPageProps {
 export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
   const typedParams = await params;
   const newsSlug = typedParams.slug;
-  const newsItem = DUMMY_NEWS.find((newsItem) => newsItem.slug === newsSlug);
+  const news = await getAllNews();
+  const newsItem: NewsItem | undefined = news.find((newsItem) => newsItem.slug === newsSlug);
 
   // Verificar si newsItem es undefined para evitar errores
   if (!newsItem) {

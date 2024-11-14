@@ -1,21 +1,22 @@
-"use client"
 
-import { notFound, useRouter } from 'next/navigation';
-import { use } from 'react';
-import { DUMMY_NEWS } from '@/dummy-news';
+
+import ModalBackdrop from '@/components/modal-backdrop';
+import { getAllNews } from '@/lib/news';
+import { notFound} from 'next/navigation';
+import { NewsItem } from '@/lib/news';
 
 interface InterceptedImagePageProps {
-  params: Promise<{
+  params: {
     slug: string;
-  }>;
+  };
 }
 
-export default function InterceptedImagePage({ params }: InterceptedImagePageProps) {
+export default async function InterceptedImagePage({ params }: InterceptedImagePageProps) {
 
-  const router = useRouter() //This hook allows you to programmatically change routes inside Client Component.
-  const typedParams = use(params); // Usa `use` para esperar que `params` sea resuelto
+  const typedParams = await params;
   const newsItemSlug = typedParams.slug;
-  const newsItem = DUMMY_NEWS.find(
+  const news = await getAllNews();
+  const newsItem: NewsItem | undefined = news.find(
     (newsItem) => newsItem.slug === newsItemSlug
   );
 
@@ -25,7 +26,7 @@ export default function InterceptedImagePage({ params }: InterceptedImagePagePro
 
   return (
     <>
-      <div className="modal-backdrop" onClick={router.back} />
+      <ModalBackdrop></ModalBackdrop>
       <dialog className="modal" open>
         <div className="fullscreen-image">
           <img src={`/images/news/${newsItem.image}`} alt={newsItem.title} />

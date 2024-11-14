@@ -92,3 +92,17 @@ Se continua con el demo de news pero esta vez se hacer fetching desde diferentes
 - Loading data from databases and other sources
 
 #### 1.4.1. Temas tratados
+
+- Fetching Deep Dive
+- Client side data fetching
+- Server side fetching
+- Sever side fetching conectandose directamente a la base de datos
+- Loading states con server side fetching
+- Suspense
+- Async functions and components
+
+### 1.5. Mutation
+
+Enviar, almacenar y cambiar datos utilizando server actions
+
+#### 1.5.1. Temas tratados
