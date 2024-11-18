@@ -67,12 +67,26 @@ initDb();
 
 
 
+
+
+export type PostType = {
+  id: string;
+  image: string;
+  title: string;
+  content: string;
+  createdAt: string; // Si usas fechas en formato ISO, por ejemplo
+  userFirstName: string;
+  userLastName: string;
+  likes: number;
+  isLiked: boolean;
+};
+
 /**Esta función asíncrona obtiene los posts de la base de datos. 
  * 
  * Toma como argumento un parámetro maxNumber, que es el número máximo de 
  * posts que se deben recuperar. Si no se especifica, se retornarán todos los posts disponibles.
 */
-export async function getPosts(maxNumber: number) {
+export async function getPosts(maxNumber: number | null): Promise<PostType[]> {
 
   /**Si el parámetro maxNumber es proporcionado (es decir, no es undefined o 0), se agrega la cláusula LIMIT ? a la consulta, 
    * lo que limita la cantidad de posts devueltos a maxNumber.
@@ -101,7 +115,8 @@ export async function getPosts(maxNumber: number) {
    * Si maxNumber está definido, se limita la cantidad de resultados a maxNumber usando stmt.all(maxNumber).
    * Si maxNumber no está definido, se devuelven todos los resultados sin límite usando stmt.all().
    */
-  return maxNumber ? stmt.all(maxNumber) : stmt.all();
+  const result = maxNumber ? stmt.all(maxNumber) : stmt.all();
+  return result as PostType[]; // Usa un type assertion si estás seguro del tipo
 }
 
 
@@ -114,7 +129,7 @@ export async function getPosts(maxNumber: number) {
 
 
 type Post = {
-  imageUrl: string;
+  imageUrl: null;
   title: string;
   content: string;
   userId: number; // Ajusta según el tipo real de `userId`
@@ -126,6 +141,7 @@ export async function storePost(post: Post) {
    * Los signos de interrogación (?) son placeholders que serán reemplazados por los valores que se proporcionen más adelante.
    * Los campos que se insertan son: image_url, title, content y user_id, que corresponden a las columnas de la tabla posts. 
    */
+  console.log(post)
   const stmt = db.prepare(`
     INSERT INTO posts (image_url, title, content, user_id)
     VALUES (?, ?, ?, ?)`);
@@ -153,28 +169,62 @@ run() devuelve un objeto con información sobre la ejecución de la consulta, pe
 type LikeCountResult = { count: number };
 
 export async function updatePostLikeStatus(postId: number, userId: number) {
+  /**Preparar la consulta SQL:
+   * Se crea una declaración preparada que cuenta cuántas filas existen en la tabla likes para el par de 
+   * user_id y post_id especificado. */
   const stmt = db.prepare(`
     SELECT COUNT(*) AS count
     FROM likes
     WHERE user_id = ? AND post_id = ?`);
 
   // Usa `.get` con parámetros de forma normal, sin necesidad de tipo genérico
+  /**stmt.get(userId, postId) ejecuta la consulta con los valores proporcionados 
+   * y devuelve un objeto que contiene el resultado. Este objeto tiene la forma LikeCountResult. 
+  */
   const result = stmt.get(userId, postId) as LikeCountResult;
 
+  /**Si result.count es 0, significa que el usuario no ha dado "like" al post. En este caso, se añadirá un "like".
+   * Si result.count es mayor a 0, significa que el usuario ya ha dado "like" al post. En este caso, se eliminará el "like". */
   const isLiked = result.count === 0;
 
+  /**Si isLiked es true, se añadirá un "like".
+   * Si isLiked es false, se eliminará el "like". */
   if (isLiked) {
+    /**Se prepara una consulta INSERT INTO para añadir un nuevo registro en la 
+     * tabla likes con los valores proporcionados (userId y postId). */
     const stmt = db.prepare(`
       INSERT INTO likes (user_id, post_id)
       VALUES (?, ?)`);
+      /**Se introduce un retraso artificial de 1 segundo con setTimeout para simular una operación asíncrona. */
     await new Promise((resolve) => setTimeout(resolve, 1000));
+    /**Se ejecuta la consulta con stmt.run(userId, postId). */
     return stmt.run(userId, postId);
   } else {
+    // Eliminar un "like"
+
+    /**Se prepara una consulta DELETE FROM para eliminar el 
+     * registro de la tabla likes que coincida con los valores de userId y postId. */
     const stmt = db.prepare(`
       DELETE FROM likes
       WHERE user_id = ? AND post_id = ?`);
+      /**Al igual que antes, se introduce un retraso artificial de 1 segundo. */
     await new Promise((resolve) => setTimeout(resolve, 1000));
+    /**La consulta se ejecuta con stmt.run(userId, postId). */
     return stmt.run(userId, postId);
   }
 }
 
+/**OJO CON LA ESCALABILIDAD
+ * 
+ * Escalabilidad:
+
+Si tienes muchos usuarios interactuando, esta función puede convertirse en un 
+* cuello de botella si no optimizas el acceso a la base de datos 
+(por ejemplo, eliminando el retraso artificial).
+ */
+
+/**NOTA IMPORTANTE
+ * Si hay posibilidad de que stmt.all() no devuelva datos válidos (por ejemplo, si el esquema de la base de datos cambia), 
+ * considera validar los datos antes de devolverlos, utilizando un runtime type-checking library como zod o io-ts para mayor 
+ * seguridad.
+*/

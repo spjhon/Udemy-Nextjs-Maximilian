@@ -18,7 +18,7 @@ function Post({ post }: PostProps) {
   return (
     <article className="post">
       <div className="post-image">
-        <img src={post.image} alt={post.title} />
+        {post.image === null ? "no hay imagen, lo siento": <img src={post.image} alt={post.title} />}
       </div>
       <div className="post-content">
         <header>

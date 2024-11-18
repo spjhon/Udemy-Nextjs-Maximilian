@@ -30,4 +30,7 @@ Esta es una app para demostrar el cambio de datos a una base de datos externa o 
 
 ### Temas tratados
 
+- **Server Actions:** Es un feature de react que solo se desbloquea cuando se utiliza con next js y lo que hace es ejecutar funciones que se encuetran en el servidor y que pueden ser llamadas al client para poder interactuar con forms
+- **Form Actioins:** Es otro feature de react que permite utilizar el actions de los form para trigger funciones del lado del cliente sin que se ejecute el submit default del browser y ejecutar funciones del lado del cliente
+
 ### Tips

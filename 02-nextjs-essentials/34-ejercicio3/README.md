@@ -39,6 +39,7 @@ Es la app de una pizzeria en donde se muestra como hacer fetching y hacer post p
 - useRef
 - Not-found
 - error
+- Server Actions
 
 ## Tips
 
