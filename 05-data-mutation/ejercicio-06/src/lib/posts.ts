@@ -129,7 +129,7 @@ export async function getPosts(maxNumber: number | null): Promise<PostType[]> {
 
 
 type Post = {
-  imageUrl: null;
+  imageUrl: string;
   title: string;
   content: string;
   userId: number; // Ajusta según el tipo real de `userId`

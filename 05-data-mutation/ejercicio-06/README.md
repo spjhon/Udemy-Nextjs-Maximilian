@@ -34,3 +34,7 @@ Esta es una app para demostrar el cambio de datos a una base de datos externa o 
 - **Form Actioins:** Es otro feature de react que permite utilizar el actions de los form para trigger funciones del lado del cliente sin que se ejecute el submit default del browser y ejecutar funciones del lado del cliente
 
 ### Tips
+
+- "use server" does not mean or guarantee that the code will only execute on the server! Whilst that will be the case for server actions, you can't rely on the usage of "use server" to "hide code" from the client!
+
+If you have code that must never end up on the client-side (no matter if it's a server action or not), you should instead use the server-only package as described [here](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#keeping-server-only-code-out-of-the-client-environment).
