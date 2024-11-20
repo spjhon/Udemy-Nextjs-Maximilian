@@ -141,7 +141,7 @@ export async function storePost(post: Post) {
    * Los signos de interrogación (?) son placeholders que serán reemplazados por los valores que se proporcionen más adelante.
    * Los campos que se insertan son: image_url, title, content y user_id, que corresponden a las columnas de la tabla posts. 
    */
-  console.log(post)
+  
   const stmt = db.prepare(`
     INSERT INTO posts (image_url, title, content, user_id)
     VALUES (?, ?, ?, ?)`);
