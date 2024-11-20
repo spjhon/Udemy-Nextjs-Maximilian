@@ -1,5 +1,5 @@
 import { uploadImage } from "@/lib/cloudinary";
-import { storePost } from "@/lib/posts";
+import { storePost, updatePostLikeStatus } from "@/lib/posts";
 import { redirect } from "next/navigation";
 
 interface typeFormDataExtracted {
@@ -61,3 +61,9 @@ export async function createPost( prevState: { errors: string[] }, formData: For
 
   redirect("/feed");
 }
+
+export async function togglePostLikeStatus(postId: number) {
+  "use server"
+  updatePostLikeStatus(postId, 2);
+}
+

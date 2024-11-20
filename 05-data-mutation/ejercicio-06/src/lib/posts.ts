@@ -70,7 +70,7 @@ initDb();
 
 
 export type PostType = {
-  id: string;
+  id: number;
   image: string;
   title: string;
   content: string;
@@ -169,6 +169,7 @@ run() devuelve un objeto con información sobre la ejecución de la consulta, pe
 type LikeCountResult = { count: number };
 
 export async function updatePostLikeStatus(postId: number, userId: number) {
+  console.log("se estan preparando los datos")
   /**Preparar la consulta SQL:
    * Se crea una declaración preparada que cuenta cuántas filas existen en la tabla likes para el par de 
    * user_id y post_id especificado. */
