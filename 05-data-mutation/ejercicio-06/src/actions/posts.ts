@@ -1,5 +1,8 @@
+ "use server"
+
 import { uploadImage } from "@/lib/cloudinary";
 import { storePost, updatePostLikeStatus } from "@/lib/posts";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 interface typeFormDataExtracted {
@@ -10,7 +13,7 @@ interface typeFormDataExtracted {
 }
 
 export async function createPost( prevState: { errors: string[] }, formData: FormData): Promise<{ errors: string[] }> {
-  "use server";
+ 
 
   const errors = [];
 
@@ -59,11 +62,15 @@ export async function createPost( prevState: { errors: string[] }, formData: For
   // Enviamos los datos al backend
   await storePost(formDataExtracted);
 
+  revalidatePath('/', 'layout');
   redirect("/feed");
 }
 
 export async function togglePostLikeStatus(postId: number) {
-  "use server"
-  updatePostLikeStatus(postId, 2);
+ 
+  await updatePostLikeStatus(postId, 2);
+  //Este revalidate path lo que hace es decirle a next js que revalide los paths despues de ejecutar acciones de arriba
+  //para evitar el cache que es muy agresivo en next js y entonces para evitar el state se utiiza esto y algo llamado OPTIMISTIC UPDATE
+  revalidatePath("/", "layout")
 }
 

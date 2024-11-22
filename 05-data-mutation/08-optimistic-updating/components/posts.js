@@ -43,7 +43,7 @@ export default function Posts({ posts }) {
     const updatedPostIndex = prevPosts.findIndex(post => post.id === updatedPostId);
 
     if (updatedPostIndex === -1) {
-      return prevPosts;
+      return prevPosts; // Si no se encuentra, no se modifica nada.
     }
 
     const updatedPost = { ...prevPosts[updatedPostIndex] };
@@ -58,6 +58,7 @@ export default function Posts({ posts }) {
     return <p>There are no posts yet. Maybe start sharing some?</p>;
   }
 
+  //en esta funcion se combianan el optimistic con el toggle que el action que activa la comunicacion con la base de datos
   async function updatePost(postId) {
     updateOptimisticPosts(postId);
     await togglePostLikeStatus(postId);
