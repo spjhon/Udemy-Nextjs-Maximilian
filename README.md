@@ -106,3 +106,20 @@ Se continua con el demo de news pero esta vez se hacer fetching desde diferentes
 Enviar, almacenar y cambiar datos utilizando server actions
 
 #### 1.5.1. Temas tratados
+
+- Server actions
+- Form Actions
+- Actions in general
+- Data mutation
+- Optimistic Updating
+- Path Validation
+
+### 1.6. Caching
+
+Next js hace un cashing bastante agresivo entonces en esta seccion se busca profundizar en ese aspecto
+
+#### 1.6.1. Temas Tratados
+
+- Understanding Next Js Cashing
+- Revalidating Cached Data
+- Manually caching data
