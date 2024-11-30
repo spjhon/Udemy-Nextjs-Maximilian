@@ -1,11 +1,11 @@
-'use client';
 import Link from 'next/link';
-import { useFormState } from 'react-dom';
-
+import { useActionState } from 'react';
 import { signup } from '@/actions/auth-actions';
 
 export default function AuthForm() {
-  const [formState, formAction] = useFormState(signup, {});
+
+  const [state, formAction] = useActionState(signup, { errors: { [key: string]: string }});
+
   return (
     <form id="auth-form" action={formAction}>
       <div>
@@ -19,16 +19,18 @@ export default function AuthForm() {
         <label htmlFor="password">Password</label>
         <input type="password" name="password" id="password" />
       </p>
-      {formState.errors && (
+      {state.errors && (
         <ul id="form-errors">
-        {/**Object.keys lo que hace es extraer las llaves de un object y convertirlo en un array */}
-          {Object.keys(formState.errors).map((error) => (
-            <li key={error}>{formState.errors[error]}</li>
+          {/**Object.keys lo que hace es extraer las llaves de un object y convertirlo en un array */}
+          {Object.keys(state.errors).map((error) => (
+            <li key={error}>{state.errors[error]}</li>
           ))}
         </ul>
       )}
       <p>
-        <button type="submit">Create Account</button>
+        <button type="submit">
+          Create Account
+        </button>
       </p>
       <p>
         <Link href="/">Login with existing account.</Link>
