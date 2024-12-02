@@ -1,5 +1,9 @@
 'use server';
 
+import { hashUserPassword } from "@/lib/hash";
+import { createUser } from "@/lib/user";
+import { redirect } from "next/navigation";
+
 export async function signup(prevState: { errors: { [key: string]: string } }, formData: FormData): Promise<{ errors: { [key: string]: string } }> {
   
   
@@ -21,13 +25,29 @@ export async function signup(prevState: { errors: { [key: string]: string } }, f
   }
 
   if (Object.keys(errors).length > 0) {
-    return {
-      errors,
-    };
+    return {errors};
   }
 
-  // store it in the database (create a new user)
-  return {
-    errors: {}, // Si no hay errores, devuelves un objeto vacío
-  };
+  
+
+  const hashedPassword = hashUserPassword(password);
+
+  try {
+
+    createUser(email, hashedPassword);
+
+  } catch (error) {
+    if (error instanceof Error && 'code' in error) {
+      if (error.code === 'SQLITE_CONSTRAINT_UNIQUE') {
+        return {
+          errors: {
+            email: 'It seems like an account for the chosen email already exists.',
+          },
+        };
+      }
+    }
+    throw error;
+  }
+
+  redirect('/training');
 }
