@@ -1,5 +1,6 @@
 'use server';
 
+import { createAuthSession } from "@/lib/auth";
 import { hashUserPassword } from "@/lib/hash";
 import { createUser } from "@/lib/user";
 import { redirect } from "next/navigation";
@@ -34,7 +35,11 @@ export async function signup(prevState: { errors: { [key: string]: string } }, f
 
   try {
 
-    createUser(email, hashedPassword);
+    const id = createUser(email, hashedPassword);
+    //aqui se uede observar como se crea la sesion de auth y se crea la sesion en el servidor y
+    //el cookie que devuelve la conexcion con el servidor
+    await createAuthSession(id);
+    redirect('/training');
 
   } catch (error) {
     if (error instanceof Error && 'code' in error) {
