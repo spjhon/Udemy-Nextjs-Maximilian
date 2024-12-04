@@ -57,11 +57,16 @@ permitiendo que el servidor identifique al usuario. */
 
 
 
-
-
 export async function verifyAuth() {
+
+  /**Propósito: Accede a las cookies en el contexto actual del servidor y extrae la cookie de sesión específica asociada 
+   * con lucia-auth.
+cookies() es una API de Next.js para manejar cookies de manera eficiente en entornos server-side.
+lucia.sessionCookieName es el nombre predefinido de la cookie que contiene la identificación de la sesión. */
   const sessionCookie = (await cookies()).get(lucia.sessionCookieName);
 
+  /**Si la cookie de sesión no está presente, la función retorna un objeto con user y session como null, 
+   * indicando que no hay una sesión activa. */
   if (!sessionCookie) {
     return {
       user: null,
@@ -69,8 +74,9 @@ export async function verifyAuth() {
     };
   }
 
+  /**Aquí se extrae el valor de la cookie de sesión (sessionId).
+Si el valor está vacío o no es válido, también retorna un objeto indicando que no hay una sesión válida. */
   const sessionId = sessionCookie.value;
-
   if (!sessionId) {
     return {
       user: null,
@@ -78,9 +84,16 @@ export async function verifyAuth() {
     };
   }
 
+  /**Propósito: lucia.validateSession(sessionId) verifica si el sessionId corresponde a una sesión válida en el backend.
+El resultado (result) contiene:
+result.user: Información del usuario autenticado.
+result.session: Información sobre la sesión, incluyendo si es "fresh" (recién creada y válida). */
   const result = await lucia.validateSession(sessionId);
 
   try {
+    /**Si la sesión es válida y está marcada como fresh:
+Se crea una nueva cookie de sesión actualizada usando lucia.createSessionCookie.
+La cookie se establece de nuevo en el cliente con sus atributos correspondientes, asegurando que la sesión se mantenga fresca. */
     if (result.session && result.session.fresh) {
       const sessionCookie = lucia.createSessionCookie(result.session.id);
       (await cookies()).set(
@@ -89,6 +102,10 @@ export async function verifyAuth() {
         sessionCookie.attributes
       );
     }
+
+    /**Si la sesión no es válida (result.session es null):
+Se crea una cookie de sesión en blanco con lucia.createBlankSessionCookie.
+Esto asegura que cualquier cookie de sesión antigua o inválida sea reemplazada. */
     if (!result.session) {
       const sessionCookie = lucia.createBlankSessionCookie();
       (await cookies()).set(

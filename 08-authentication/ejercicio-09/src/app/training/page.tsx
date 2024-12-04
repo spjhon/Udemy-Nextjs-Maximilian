@@ -1,4 +1,6 @@
+import { verifyAuth } from '@/lib/auth';
 import { getTrainings } from '@/lib/training';
+import { redirect } from 'next/navigation';
 
 
 interface Types {
@@ -11,7 +13,15 @@ interface Types {
 
 export default async function TrainingPage() {
 
+  /**Con esto se esta llamando la funcion que verifica la autenticidad y si es asi pues se ejecuta la ruta */
+  const result = await verifyAuth();
 
+  /**Si no existe resultado inmediatamente se hace RREDIRECCIONAMIENTO */
+  if (!result.user) {
+    return redirect('/');
+  }
+
+  
   const trainingSessions: Types[] = getTrainings();
 
   return (
