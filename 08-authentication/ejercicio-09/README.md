@@ -27,6 +27,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - User singUp
 - User Login
 - Protecting Routes
+- Query params
 
 ### Tips
 

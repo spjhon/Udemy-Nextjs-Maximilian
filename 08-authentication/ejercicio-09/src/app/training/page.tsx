@@ -16,8 +16,11 @@ export default async function TrainingPage() {
   /**Con esto se esta llamando la funcion que verifica la autenticidad y si es asi pues se ejecuta la ruta */
   const result = await verifyAuth();
 
+  //console.log(result)
+  //console.log(result.user)
+
   /**Si no existe resultado inmediatamente se hace RREDIRECCIONAMIENTO */
-  if (!result.user) {
+  if (result.user === null) {
     return redirect('/');
   }
 
@@ -41,3 +44,7 @@ export default async function TrainingPage() {
     </main>
   );
 }
+
+/**ESTE BLOG SOBRE STRAPI AUTH PUEDE SER INTERESANTE
+ * https://www.devbookmarks.com/p/strapi-knowledge-strapi-cookie-authentication-guide
+ */

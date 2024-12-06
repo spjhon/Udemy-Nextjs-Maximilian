@@ -6,3 +6,16 @@ export function createUser(email: string, password: string) {
     .run(email, password);
   return result.lastInsertRowid;
 }
+
+
+type User = {
+  id: number;
+  email: string;
+  password: string;
+  // otras propiedades del usuario
+};
+
+export function getUserByEmail(email: string): Promise<User | null> {
+  const user = db.prepare('SELECT * FROM users WHERE email = ?').get(email) as User | null;
+  return Promise.resolve(user);
+}

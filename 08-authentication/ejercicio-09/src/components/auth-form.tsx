@@ -1,13 +1,18 @@
 'use client';
 
 
+import { auth } from '@/actions/auth-actions';
 import Link from 'next/link';
 import { useActionState } from 'react';
-import { signup } from '@/actions/auth-actions';
 
-export default function AuthForm() {
 
-  const [state, formAction] = useActionState(signup, { errors: {} });
+interface AuthFormProps {
+  mode: string;
+}
+
+export default function AuthForm({ mode }: AuthFormProps) {
+
+  const [state, formAction] = useActionState(auth.bind(null, mode), { errors: {} });
 
   return (
     <form id="auth-form" action={formAction}>
@@ -31,12 +36,20 @@ export default function AuthForm() {
         </ul>
       )}
       <p>
-        <button type="submit">
-          Create Account
+      <button type="submit">
+          {mode === 'login' ? 'Login' : 'Create Account'}
         </button>
       </p>
       <p>
-        <Link href="/">Login with existing account.</Link>
+        {/**aqui se puede observar que gracias a los params que se asigman desde aca, se puede renderizar diferencias
+         * gracias al serachparams de next js
+         */}
+      {mode === 'login' && (
+          <Link href="/?mode=signup">Create an account.</Link>
+        )}
+        {mode === 'signup' && (
+          <Link href="/?mode=login">Login with existing account.</Link>
+        )}
       </p>
     </form>
   );
