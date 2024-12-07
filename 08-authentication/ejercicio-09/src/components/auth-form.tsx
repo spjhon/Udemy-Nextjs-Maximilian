@@ -14,6 +14,8 @@ export default function AuthForm({ mode }: AuthFormProps) {
 
   const [state, formAction] = useActionState(auth.bind(null, mode), { errors: {} });
 
+console.log(state)
+
   return (
     <form id="auth-form" action={formAction}>
       <div>
@@ -21,7 +23,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
       </div>
       <p>
         <label htmlFor="email">Email</label>
-        <input type="email" name="email" id="email" />
+        <input name="email" id="email" />
       </p>
       <p>
         <label htmlFor="password">Password</label>
@@ -29,11 +31,17 @@ export default function AuthForm({ mode }: AuthFormProps) {
       </p>
       {state.errors && (
         <ul id="form-errors">
-          {/**Object.keys lo que hace es extraer las llaves de un object y convertirlo en un array */}
-          {Object.keys(state.errors).map((error) => (
-            <li key={error}>{state.errors[error]}</li>
-          ))}
-        </ul>
+          {/**Object.entries() devuelve un array de arrays, donde cada subarray contiene un par [key, value].
+           * Ejemplo practico:
+           * 
+           * const errors = { email: 'Invalid email', password: 'Weak password' };
+           * Object.entries(errors);
+           * // Resultado: [['email', 'Invalid email'], ['password', 'Weak password']]
+           */}
+        {Object.entries(state.errors).map(([key, value]) => (
+          <li key={key}>{value}</li>
+        ))}
+      </ul>
       )}
       <p>
       <button type="submit">

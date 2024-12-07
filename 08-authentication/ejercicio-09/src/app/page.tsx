@@ -10,7 +10,14 @@ interface HomeProps {
 //y luego utilizar esto para generar diferenes opciones de renderizado de a cuerdo a lo que lleve params, esto se
 //puede observar en authform
 
+
+/**Uso de ?? (nullish coalescing operator): Si no existe searchParams.mode, se usa el valor 'login'. 
+ * Esto es más seguro y compatible con casos en los que searchParams podría no estar definido. */
 export default async function Home({ searchParams }: HomeProps) {
-  const formMode: string = searchParams.mode || 'login';
+
+  //No olvidar que siempre que se consulte el params, se debe de hacer await
+  const params = await searchParams
+
+  const formMode: string = params?.mode ?? 'login'; // Acceso seguro
   return <AuthForm mode={formMode} />;
 }

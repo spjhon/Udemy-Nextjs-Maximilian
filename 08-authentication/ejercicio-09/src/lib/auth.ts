@@ -118,3 +118,27 @@ Esto asegura que cualquier cookie de sesión antigua o inválida sea reemplazada
 
   return result;
 }
+
+
+
+
+
+//Este es el codigo para borrar una sesion:
+
+export async function destroySession() {
+  const { session } = await verifyAuth();
+  if (!session) {
+    return {
+      error: 'Unauthorized!',
+    };
+  }
+
+  await lucia.invalidateSession(session.id);
+
+  const sessionCookie = lucia.createBlankSessionCookie();
+  (await cookies()).set(
+    sessionCookie.name,
+    sessionCookie.value,
+    sessionCookie.attributes
+  );
+}

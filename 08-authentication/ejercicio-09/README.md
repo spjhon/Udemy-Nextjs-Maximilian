@@ -28,6 +28,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - User Login
 - Protecting Routes
 - Query params
+- Mode
+- Group Layout
 
 ### Tips
 
